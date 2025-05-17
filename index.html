@@ -41,7 +41,7 @@
          transition: transform 0.3s ease;    /* animation fluide */
          z-index: 40;
          }
-         /* quand on veut l’afficher, on remet à zéro le translate */
+         /* quand on veut l'afficher, on remet à zéro le translate */
          #sidebar.show {
          transform: translateX(0);
          }
@@ -257,6 +257,18 @@
                            <li>Scripting système</li>
                         </ul>
                      </div>
+                     <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-yellow-800 mb-2">
+                          <i class="fas fa-bolt mr-2"></i>Exploits Offensifs
+                        </h3>
+                        <ul class="list-disc pl-5 text-yellow-700">
+                          <li>Scripts d'intrusion en réseau</li>
+                          <li>Automatisation d'attaques personnalisées</li>
+                          <li>Fuzzing et découverte de vulnérabilités</li>
+                          <li>Développement d'outils de pentesting</li>
+                          <li>Écriture de payloads sur-mesure</li>
+                        </ul>
+                      </div>
                   </div>
                   <h3 class="text-lg font-semibold mb-2">Premier
                      programme
@@ -2208,7 +2220,7 @@ for i in range(debut, fin + 1):
            const links = document.querySelectorAll('.lesson-link');
            const contents = document.querySelectorAll('.lesson-content');
          
-           // Fonction d’activation d’une leçon
+           // Fonction d'activation d'une leçon
            function activate(lesson) {
              contents.forEach(c => c.classList.remove('active'));
              links.forEach(l => l.classList.remove('active-lesson'));
