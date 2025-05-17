@@ -2200,51 +2200,70 @@ for i in range(debut, fin + 1):
       </div>
       </div>
       <script>
-         const menuBtn = document.getElementById('menu-btn');
-         const sidebar = document.getElementById('sidebar');
-         
-         menuBtn.addEventListener('click', () => {
-         sidebar.classList.toggle('show');
-         });
-         
-         Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
-             text: 'Copy',
-             onClick: (env) => {
-                 navigator.clipboard.writeText(env.code).then(() => {/*copié*/ });
-             }
-         });
-         document.addEventListener('DOMContentLoaded', () => {
-             document
-                 .querySelectorAll('.code-block pre code:not([class*="language-"])')
-                 .forEach(el => el.classList.add('language-python'));
-             Prism.highlightAll();
-         });
-         document.addEventListener('DOMContentLoaded', () => {
-             const links = document.querySelectorAll('.lesson-link');
-             const contents = document.querySelectorAll('.lesson-content');
-         
-             links.forEach(link => {
-                 link.addEventListener('click', event => {
-                     event.preventDefault();
-                     const target = link.dataset.lesson;
-         
-                     contents.forEach(c => c.classList.remove('active'));
-                     links.forEach(l => l.classList.remove('active-lesson'));
-         
-                     link.classList.add('active-lesson');
-                     document.getElementById(target).classList.add('active');
-                 });
-             });
-         
-             const buttons = document.querySelectorAll('.solution-toggle');
-             buttons.forEach(btn => {
-                 btn.addEventListener('click', () => {
-                     const sol = btn.nextElementSibling;
-                     sol.classList.toggle('show');
-                     btn.textContent = sol.classList.contains('show') ? 'Cacher la solution' : 'Afficher la solution';
-                 });
-             });
-         });
-      </script>
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+      
+        // Toggle sidebar mobile
+        menuBtn.addEventListener('click', () => {
+          sidebar.classList.toggle('show');
+        });
+      
+        // Prism.js copy-to-clipboard
+        Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
+          text: 'Copy',
+          onClick: env => {
+            navigator.clipboard.writeText(env.code);
+          }
+        });
+      
+        document.addEventListener('DOMContentLoaded', () => {
+          // Ajout de la classe language-python et mise en forme
+          document
+            .querySelectorAll('.code-block pre code:not([class*="language-"])')
+            .forEach(el => el.classList.add('language-python'));
+          Prism.highlightAll();
+      
+          // NAVIGATION PAR HASH
+          const links = document.querySelectorAll('.lesson-link');
+          const contents = document.querySelectorAll('.lesson-content');
+      
+          // Fonction d’activation d’une leçon
+          function activate(lesson) {
+            contents.forEach(c => c.classList.remove('active'));
+            links.forEach(l => l.classList.remove('active-lesson'));
+            const link = document.querySelector(`.lesson-link[data-lesson="${lesson}"]`);
+            const section = document.getElementById(lesson);
+            if (link && section) {
+              link.classList.add('active-lesson');
+              section.classList.add('active');
+            }
+          }
+      
+          // Clic sur un lien → mise à jour du hash + activation
+          links.forEach(link => {
+            link.addEventListener('click', () => {
+              const target = link.dataset.lesson;
+              window.location.hash = target;
+              activate(target);
+            });
+          });
+      
+          // Au chargement : lecture du hash ou fallback sur "intro"
+          const initial = window.location.hash.replace('#', '') || 'intro';
+          activate(initial);
+      
+          // TOGGLE SOLUTIONS
+          const buttons = document.querySelectorAll('.solution-toggle');
+          buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              const sol = btn.nextElementSibling;
+              sol.classList.toggle('show');
+              btn.textContent = sol.classList.contains('show')
+                ? 'Cacher la solution'
+                : 'Afficher la solution';
+            });
+          });
+        });
+      </script>      
    </body>
 </html>
