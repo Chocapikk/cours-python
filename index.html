@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cours Complet Python</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+      <style>
+         .code-block {
+         position: relative;
+         margin-bottom: 2rem;
+         }
+         .code-block pre {
+         font-family: 'Courier New', monospace;
+         background-color: #2d2d2d;
+         border-radius: 0.5rem;
+         padding: 1rem;
+         overflow-x: auto;
+         margin: 0;
+         }
+         .sidebar {
+         height: 100vh;
+         overflow-y: auto;
+         position: sticky;
+         top: 0;
+         }
+         .content {
+         max-height: 100vh;
+         overflow-y: auto;
+         }
+         .active-lesson {
+         background-color: #3b82f6;
+         color: white;
+         }
+         .exercise {
+         background-color: #f0f9ff;
+         border-left: 4px solid #3b82f6;
+         }
+         .hidden {
+         display: none;
+         }
+         .solution {
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.3s ease-out;
+         }
+         .solution.show {
+         max-height: 500px;
+         }
+         .lesson-content {
+         display: none;
+         }
+         .lesson-content.active {
+         display: block;
+         }
+         pre[class*="language-"] {
+         background: #2d2d2d;
+         border: 1px solid #444;
+         border-radius: 0.25rem;
+         padding: 1rem;
+         font-size: 0.95rem;
+         line-height: 1.4;
+         overflow-x: auto;
+         }
+         /* Comments, prologs, doctype */
+         .token.comment,
+         .token.prolog,
+         .token.doctype,
+         .token.cdata {
+         color: #75715e;
+         font-style: italic;
+         }
+         /* Keywords, booleans, constants */
+         .token.keyword,
+         .token.boolean,
+         .token.constant,
+         .token.deleted {
+         color: #f92672;
+         font-weight: 600;
+         }
+         /* Strings, numbers, selectors, attributes */
+         .token.string,
+         .token.char,
+         .token.number,
+         .token.selector,
+         .token.attr-name,
+         .token.attribute,
+         .token.builtin,
+         .token.inserted {
+         color: #a6e22e;
+         }
+         /* Functions & Class names */
+         .token.function,
+         .token.class-name {
+         color: #66d9ef;
+         }
+         /* Operators, punctuation, URLs */
+         .token.operator,
+         .token.punctuation,
+         .token.entity,
+         .token.url,
+         .token.symbol,
+         .token.attr-value,
+         .token.atrule {
+         color: #f8f8f2;
+         }
+         /* Regexps & important text */
+         .token.regex,
+         .token.important {
+         background: rgba(255, 255, 255, 0.1);
+         color: #fd971f;
+         }
+         /* Bold & Italic helpers */
+         .token.bold {
+         font-weight: bold;
+         }
+         .token.italic {
+         font-style: italic;
+         }
+      </style>
+   </head>
+   <body class="bg-gray-50">
+      <div class="flex">
+         <!-- Sidebar -->
+         <div class="sidebar w-64 bg-gray-800 text-white p-4">
+            <div class="flex items-center mb-8">
+               <i class="fab fa-python text-3xl mr-2 text-blue-400"></i>
+               <h1 class="text-xl font-bold">Cours Python</h1>
+            </div>
+            <div class="mb-6">
+               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
+                  Débutant
+               </h2>
+               <ul class="space-y-1">
+                  <li><a href="#intro" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="intro">Introduction à
+                     Python</a>
+                  </li>
+                  <li><a href="#variables" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="variables">Variables et
+                     Types</a>
+                  </li>
+                  <li><a href="#operators" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="operators">Opérateurs</a></li>
+                  <li><a href="#conditions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="conditions">Conditions</a></li>
+                  <li><a href="#boucles" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="boucles">Boucles</a></li>
+                  <li><a href="#fonctions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="fonctions">Fonctions</a></li>
+                  <li><a href="#exercices1" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="exercices1">Exercices
+                     Débutant</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="mb-6">
+               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
+                  Intermédiaire
+               </h2>
+               <ul class="space-y-1">
+                  <li><a href="#listes" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="listes">Listes et Tuples</a></li>
+                  <li><a href="#dictionnaires" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="dictionnaires">Dictionnaires</a></li>
+                  <li><a href="#fichiers" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="fichiers">Manipulation de
+                     fichiers</a>
+                  </li>
+                  <li><a href="#exceptions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="exceptions">Gestion des
+                     erreurs</a>
+                  </li>
+                  <li><a href="#modules" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="modules">Modules et PIP</a></li>
+                  <li><a href="#exercices2" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="exercices2">Exercices
+                     Intermédiaire</a>
+                  </li>
+               </ul>
+            </div>
+            <div>
+               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
+                  Avancé
+               </h2>
+               <ul class="space-y-1">
+                  <li><a href="#poo" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="poo">Programmation Orientée
+                     Objet</a>
+                  </li>
+                  <li><a href="#decorateurs" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="decorateurs">Décorateurs</a></li>
+                  <li><a href="#typing" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="typing">Typing et
+                     Annotations</a>
+                  </li>
+                  <li><a href="#requests" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="requests">Requêtes HTTP
+                     (requests)</a>
+                  </li>
+                  <li><a href="#sockets" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="sockets">Programmation réseau
+                     (sockets)</a>
+                  </li>
+                  <li><a href="#exercices3" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
+                     data-lesson="exercices3">Exercices
+                     Avancés</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <!-- Main Content -->
+         <div class="content flex-1 p-8">
+            <!-- Introduction -->
+            <div id="intro" class="lesson-content active">
+               <h1 class="text-3xl font-bold mb-6">Introduction à
+                  Python
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Qu'est-ce que
+                     Python?
+                  </h2>
+                  <p class="mb-4">Python est un langage de programmation
+                     interprété, haut niveau et généraliste. Créé par
+                     Guido van Rossum en 1991, il est particulièrement
+                     apprécié pour sa syntaxe claire et sa
+                     lisibilité.
+                  </p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                     <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-2"><i
+                           class="fas fa-check-circle mr-2"></i>Avantages</h3>
+                        <ul class="list-disc pl-5 text-blue-700">
+                           <li>Syntaxe simple et intuitive</li>
+                           <li>Multiplateforme</li>
+                           <li>Grande communauté</li>
+                           <li>Bibliothèque standard étendue</li>
+                           <li>Utilisé dans de nombreux domaines</li>
+                        </ul>
+                     </div>
+                     <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-green-800 mb-2"><i
+                           class="fas fa-chart-line mr-2"></i>Utilisations</h3>
+                        <ul class="list-disc pl-5 text-green-700">
+                           <li>Développement web (Django, Flask)</li>
+                           <li>Science des données (Pandas, NumPy)</li>
+                           <li>Machine Learning (TensorFlow,
+                              PyTorch)
+                           </li>
+                           <li>Automatisation de tâches</li>
+                           <li>Scripting système</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Premier
+                     programme
+                  </h3>
+                  <p class="mb-4">Traditionnellement, le premier programme
+                     affiche "Hello World!". En Python, cela s'écrit
+                     simplement :
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code>print("Hello World!")</code></pre>
+                  </div>
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-lightbulb text-yellow-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-yellow-700">
+                              Pour exécuter un script Python,
+                              enregistrez votre code dans un fichier
+                              avec l'extension <code>.py</code> puis
+                              lancez <code>python
+                              nom_du_fichier.py</code> dans votre
+                              terminal.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Installation de
+                     Python
+                  </h2>
+                  <div class="mb-6">
+                     <h3 class="font-semibold mb-2">Windows</h3>
+                     <ol class="list-decimal pl-5 mb-4">
+                        <li>Téléchargez Python depuis <a href="https://www.python.org/downloads/"
+                           class="text-blue-600 hover:underline">python.org</a></li>
+                        <li>Exécutez l'installateur</li>
+                        <li>Cochez "Add Python to PATH" avant
+                           d'installer
+                        </li>
+                        <li>Suivez les instructions de
+                           l'installateur
+                        </li>
+                     </ol>
+                     <h3 class="font-semibold mb-2">macOS/Linux</h3>
+                     <p class="mb-2">Python est généralement préinstallé.
+                        Vous pouvez vérifier la version avec :
+                     </p>
+                     <div class="code-block mb-4">
+                        <pre><code>python3 --version</code></pre>
+                     </div>
+                     <p>Si besoin, installez avec votre gestionnaire de
+                        paquets :
+                     </p>
+                     <div class="code-block">
+                        <pre><code># macOS avec Homebrew
+brew install python
+
+# Debian/Ubuntu
+sudo apt update && sudo apt install python3</code></pre>
+                     </div>
+                  </div>
+                  <h3 class="font-semibold mb-2">Environnements
+                     virtuels
+                  </h3>
+                  <p class="mb-4">Il est recommandé d'utiliser des
+                     environnements virtuels pour isoler vos projets
+                     :
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Créer un environnement
+python -m venv mon_env
+
+# Activer (Windows)
+mon_env\Scripts\activate
+
+# Activer (macOS/Linux)
+source mon_env/bin/activate</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Variables et Types -->
+            <div id="variables" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Variables et Types de
+                  données
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Déclaration de
+                     variables
+                  </h2>
+                  <p class="mb-4">En Python, les variables sont créées
+                     lorsqu'on leur assigne une valeur. Pas besoin de
+                     déclarer le type explicitement.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Déclaration de variables
+nom = "Valentin"
+age = 23
+taille = 1.70
+est_etudiant = True</code></pre>
+                  </div>
+                  <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-info-circle text-blue-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-blue-700">
+                              Les noms de variables peuvent contenir
+                              des lettres, chiffres et underscores,
+                              mais ne peuvent pas commencer par un
+                              chiffre. Python est sensible à la casse
+                              (<code>age</code> et <code>Age</code>
+                              sont différentes).
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Types de données
+                     de base
+                  </h3>
+                  <div class="overflow-x-auto mb-6">
+                     <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                           <tr>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Type
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Description
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Exemple
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">int</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Nombre
+                                 entier
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>42</code></td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">float</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Nombre
+                                 à virgule flottante
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>3.14</code></td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">str</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Chaîne
+                                 de caractères
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>"Bonjour"</code></td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">bool</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Booléen
+                                 (True/False)
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>True</code></td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">NoneType
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Absence
+                                 de valeur
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>None</code></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Conversion de
+                     types
+                  </h3>
+                  <p class="mb-4">Vous pouvez convertir entre différents
+                     types avec les fonctions <code>int()</code>,
+                     <code>float()</code>, <code>str()</code>, etc.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Conversion de types
+nombre = "123"
+nombre_entier = int(nombre)  # Convertit en entier
+nombre_flottant = float(nombre)  # Convertit en flottant
+
+texte = str(42)  # Convertit en chaîne de caractères</code></pre>
+                  </div>
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-exclamation-triangle text-red-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-red-700">
+                              Attention aux conversions impossibles !
+                              <code>int("abc")</code> provoquera une
+                              erreur. Vous apprendrez à gérer ces
+                              erreurs plus tard dans le cours.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Entrée
+                     utilisateur
+                  </h2>
+                  <p class="mb-4">La fonction <code>input()</code> permet
+                     de récupérer une entrée utilisateur. Elle retourne
+                     toujours une chaîne de caractères.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Demander le nom de l'utilisateur
+nom = input("Quel est votre nom ? ")
+print(f"Bonjour, {nom} !")
+
+# Demander un nombre (nécessite une conversion)
+age = int(input("Quel est votre age ? ")
+print(f"L'année prochaine vous aurez {age + 1} ans.")</code></pre>
+                  </div>
+                  <div class="exercise p-4 rounded-lg mb-4">
+                     <h3 class="font-semibold mb-2">Exercice
+                        pratique
+                     </h3>
+                     <p class="mb-2">Créez un programme qui demande deux
+                        nombres à l'utilisateur et affiche leur
+                        somme.
+                     </p>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+nombre1 = float(input("Entrez le premier nombre : "))
+nombre2 = float(input("Entrez le deuxième nombre : "))
+somme = nombre1 + nombre2
+print(f"La somme est {somme}")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Opérateurs -->
+            <div id="operators" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Opérateurs en
+                  Python
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Opérateurs
+                     arithmétiques
+                  </h2>
+                  <p class="mb-4">Python supporte les opérations
+                     mathématiques de base :
+                  </p>
+                  <div class="overflow-x-auto mb-6">
+                     <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                           <tr>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Opérateur
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Description
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Exemple
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">+</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Addition</td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 + 3 → 8</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">-</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Soustraction</td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 - 3 → 2</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">*</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Multiplication</td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 * 3 → 15</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">/</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Division</td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 / 2 → 2.5</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">//</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Division
+                                 entière
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 // 2 → 2</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">%</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Modulo
+                                 (reste)
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 % 2 → 1</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">**</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Exponentiation</td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 ** 2 → 25</code>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Priorité des
+                     opérateurs
+                  </h3>
+                  <p class="mb-4">Les opérations sont évaluées selon cet
+                     ordre de priorité :
+                  </p>
+                  <ol class="list-decimal pl-5 mb-4">
+                     <li><code>()</code> Parenthèses</li>
+                     <li><code>**</code> Exponentiation</li>
+                     <li><code>*</code>, <code>/</code>, <code>//</code>,
+                        <code>%</code>
+                     </li>
+                     <li><code>+</code>, <code>-</code></li>
+                  </ol>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple de priorité
+resultat = 5 + 3 * 2  # → 11 (pas 16)
+resultat = (5 + 3) * 2  # → 16</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Opérateurs de
+                     comparaison
+                  </h2>
+                  <p class="mb-4">Ces opérateurs retournent
+                     <code>True</code> or <code>False</code> :
+                  </p>
+                  <div class="overflow-x-auto mb-6">
+                     <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                           <tr>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Opérateur
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Description
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Exemple
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">==</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Égal
+                                 à
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 == 5 → True</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">!=</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Différent
+                                 de
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 != 3 → True</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">&gt;</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Plus
+                                 grand que
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 > 3 → True</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">&lt;</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Plus
+                                 petit que
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 < 3 → False</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">&gt;=</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Plus
+                                 grand ou égal
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 >= 5 → True</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">&lt;=</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">Plus
+                                 petit ou égal
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>5
+                                 <= 3 → False</code>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemples de comparaison
+age = 18
+majeur = age >= 18  # → True
+print(majeur)</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Opérateurs
+                     logiques
+                  </h2>
+                  <p class="mb-4">Permettent de combiner plusieurs
+                     conditions :
+                  </p>
+                  <div class="overflow-x-auto mb-6">
+                     <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                           <tr>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Opérateur
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Description
+                              </th>
+                              <th
+                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                 Exemple
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">and</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">ET
+                                 logique
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>True
+                                 and False → False</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">or</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">OU
+                                 logique
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>True
+                                 or False → True</code>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">not</td>
+                              <td class="px-6 py-4 text-sm text-gray-500">NON
+                                 logique
+                              </td>
+                              <td class="px-6 py-4 text-sm text-gray-500"><code>not
+                                 True → False</code>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemples d'opérateurs logiques
+age = 20
+permis = True
+
+if age >= 18 and permis:
+    print("Vous pouvez conduire")
+else:
+    print("Vous ne pouvez pas conduire")</code></pre>
+                  </div>
+                  <div class="exercise p-4 rounded-lg">
+                     <h3 class="font-semibold mb-2">Exercice
+                        pratique
+                     </h3>
+                     <p class="mb-2">Écrivez un programme qui demande
+                        l'âge et le salaire d'une personne, puis affiche
+                        "Éligible" si la personne a plus de 25 ans et
+                        gagne plus de 30000€, sinon affiche
+                        "Non éligible".
+                     </p>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+age = int(input("Quel est votre âge ? "))
+salaire = float(input("Quel est votre salaire annuel ? "))
+
+if age > 25 and salaire > 30000:
+    print("Éligible")
+else:
+    print("Non éligible")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Conditions -->
+            <div id="conditions" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Structures
+                  conditionnelles
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Instruction
+                     if
+                  </h2>
+                  <p class="mb-4">La structure <code>if</code> permet
+                     d'exécuter un bloc de code seulement si une
+                     condition est vraie.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de base
+if condition:
+    # Code à exécuter si condition est True
+    print("La condition est vraie")</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique
+age = 20
+
+if age >= 18:
+    print("Vous êtes majeur")</code></pre>
+                  </div>
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-lightbulb text-yellow-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-yellow-700">
+                              En Python, l'indentation est cruciale.
+                              Le bloc de code qui suit le
+                              <code>if</code> doit être indenté
+                              (généralement de 4 espaces). Cette
+                              indentation définit la portée du bloc
+                              conditionnel.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">if...else</h2>
+                  <p class="mb-4">L'instruction <code>else</code> permet
+                     d'exécuter un bloc alternatif si la condition est
+                     fausse.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe if...else
+if condition:
+    # Code si condition vraie
+else:
+    # Code si condition fausse</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique
+age = 16
+
+if age >= 18:
+    print("Vous êtes majeur")
+else:
+    print("Vous êtes mineur")</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">if...elif...else</h2>
+                  <p class="mb-4">Pour tester plusieurs conditions, on
+                     utilise <code>elif</code> (contraction de
+                     "else if").
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe if...elif...else
+if condition1:
+    # Code si condition1 vraie
+elif condition2:
+    # Code si condition2 vraie
+else:
+    # Code si aucune condition vraie</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique
+note = 14
+
+if note >= 16:
+    print("Très bien")
+elif note >= 14:
+    print("Bien")
+elif note >= 12:
+    print("Assez bien")
+else:
+    print("Insuffisant")</code></pre>
+                  </div>
+                  <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-info-circle text-blue-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-blue-700">
+                              Les conditions sont évaluées dans
+                              l'ordre. Dès qu'une condition est vraie,
+                              son bloc est exécuté et les autres
+                              conditions sont ignorées. L'ordre des
+                              tests est donc important.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Conditions
+                     imbriquées
+                  </h2>
+                  <p class="mb-4">Il est possible d'imbriquer des
+                     conditions à l'intérieur d'autres conditions.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple de conditions imbriquées
+age = 20
+permis = True
+
+if age >= 18:
+    if permis:
+        print("Vous pouvez conduire")
+    else:
+        print("Vous avez l'âge mais pas le permis")
+else:
+    print("Vous êtes trop jeune")</code></pre>
+                  </div>
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-exclamation-triangle text-red-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-red-700">
+                              Attention à l'indentation dans les
+                              conditions imbriquées ! Chaque niveau
+                              d'imbrication nécessite une indentation
+                              supplémentaire.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Opérateur
+                     ternaire
+                  </h2>
+                  <p class="mb-4">Python permet une syntaxe condensée pour
+                     les conditions simples :
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de l'opérateur ternaire
+valeur = valeur_si_vrai if condition else valeur_si_faux</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique
+age = 20
+statut = "majeur" if age >= 18 else "mineur"
+print(statut)  # Affiche "majeur"</code></pre>
+                  </div>
+                  <div class="exercise p-4 rounded-lg">
+                     <h3 class="font-semibold mb-2">Exercice
+                        pratique
+                     </h3>
+                     <p class="mb-2">Écrivez un programme qui demande un
+                        nombre à l'utilisateur et affiche :
+                     </p>
+                     <ul class="list-disc pl-5 mb-2">
+                        <li>"Positif" si le nombre est strictement
+                           positif
+                        </li>
+                        <li>"Négatif" si le nombre est strictement
+                           négatif
+                        </li>
+                        <li>"Zéro" si le nombre est nul</li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+nombre = float(input("Entrez un nombre : "))
+
+if nombre > 0:
+    print("Positif")
+elif nombre < 0:
+    print("Négatif")
+else:
+    print("Zéro")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Boucles -->
+            <div id="boucles" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Boucles en Python</h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Boucle while</h2>
+                  <p class="mb-4">La boucle <code>while</code> répète un
+                     bloc de code tant qu'une condition est vraie.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de while
+while condition:
+    # Code à répéter
+    print("La condition est vraie")</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique - compte à rebours
+compteur = 5
+
+while compteur > 0:
+    print(compteur)
+    compteur -= 1  # équivalent à compteur = compteur - 1
+
+print("Décollage !")</code></pre>
+                  </div>
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-exclamation-triangle text-red-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-red-700">
+                              Attention aux boucles infinies ! Si la
+                              condition ne devient jamais fausse, la
+                              boucle ne s'arrêtera jamais.
+                              Assurez-vous que la condition finira par
+                              être fausse.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Boucle for</h2>
+                  <p class="mb-4">La boucle <code>for</code> permet
+                     d'itérer sur une séquence (liste, chaîne de
+                     caractères, etc.).
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de for
+for element in sequence:
+    # Code à exécuter pour chaque élément
+    print(element)</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique - itération sur une liste
+fruits = ["pomme", "banane", "orange"]
+
+for fruit in fruits:
+    print(fruit)</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple pratique - itération sur une chaîne
+mot = "Python"
+
+for lettre in mot:
+    print(lettre)</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Fonction
+                     range()
+                  </h3>
+                  <p class="mb-4"><code>range()</code> génère une séquence
+                     de nombres, utile pour les boucles.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de range
+range(début, fin, pas)  # fin est exclue
+
+# Exemples
+for i in range(5):      # 0, 1, 2, 3, 4
+    print(i)
+
+for i in range(1, 6):   # 1, 2, 3, 4, 5
+    print(i)
+
+for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
+    print(i)</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Instructions
+                     break et continue
+                  </h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                     <div>
+                        <h3 class="font-semibold mb-2">break</h3>
+                        <p class="mb-2">Interrompt complètement la
+                           boucle.
+                        </p>
+                        <div class="code-block">
+                           <pre><code># Exemple de break
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # Affiche 0, 1, 2, 3, 4</code></pre>
+                        </div>
+                     </div>
+                     <div>
+                        <h3 class="font-semibold mb-2">continue</h3>
+                        <p class="mb-2">Passe à l'itération suivante de
+                           la boucle.
+                        </p>
+                        <div class="code-block">
+                           <pre><code># Exemple de continue
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)  # Affiche 0, 1, 3, 4</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Boucles
+                     imbriquées
+                  </h2>
+                  <p class="mb-4">Il est possible d'imbriquer des boucles
+                     à l'intérieur d'autres boucles.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple de boucles imbriquées
+for i in range(3):      # Boucle externe
+    for j in range(2):  # Boucle interne
+        print(f"i={i}, j={j}")</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Table de multiplication
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i} x {j} = {i*j}")
+    print()  # Ligne vide entre les tables</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">else avec les
+                     boucles
+                  </h2>
+                  <p class="mb-4">En Python, on peut utiliser
+                     <code>else</code> avec les boucles. Le bloc
+                     <code>else</code> is exécuté si la boucle se termine
+                     normalement (sans <code>break</code>).
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple de else avec for
+for i in range(5):
+    print(i)
+else:
+    print("Boucle terminée normalement")</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple avec break
+for i in range(5):
+    if i == 3:
+        break
+    print(i)
+else:
+    print("Ce message ne s'affichera pas")</code></pre>
+                  </div>
+                  <div class="exercise p-4 rounded-lg">
+                     <h3 class="font-semibold mb-2">Exercice
+                        pratique
+                     </h3>
+                     <p class="mb-2">Écrivez un programme qui :</p>
+                     <ul class="list-disc pl-5 mb-2">
+                        <li>Demande un nombre entier positif à
+                           l'utilisateur
+                        </li>
+                        <li>Affiche tous les nombres premiers inférieurs
+                           à ce nombre
+                        </li>
+                     </ul>
+                     <p class="mb-2">Un nombre premier est un nombre
+                        divisible uniquement par 1 et par lui-même.
+                     </p>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+nombre = int(input("Entrez un nombre entier positif : "))
+print(f"Nombres premiers inférieurs à {nombre}:")
+
+for n in range(2, nombre):
+    est_premier = True
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            est_premier = False
+            break
+    if est_premier:
+        print(n, end=" ")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Fonctions -->
+            <div id="fonctions" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Fonctions en Python</h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Définition de
+                     fonctions
+                  </h2>
+                  <p class="mb-4">Une fonction est un bloc de code
+                     réutilisable qui effectue une tâche spécifique.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe de base
+def nom_de_la_fonction(paramètres):
+    """Docstring (description de la fonction)"""
+    # Corps de la fonction
+    return résultat  # Optionnel</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Exemple simple
+def saluer(nom):
+    """Affiche un message de salutation"""
+    print(f"Bonjour, {nom} !")
+
+# Appel de la fonction
+saluer("Valentin")  # Affiche "Bonjour, Valentin !"</code></pre>
+                  </div>
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-lightbulb text-yellow-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-yellow-700">
+                              Les docstrings (entre triples
+                              guillemets) sont des descriptions des
+                              fonctions. Elles sont accessibles avec
+                              <code>help(nom_de_la_fonction)</code> et
+                              sont essentielles pour documenter votre
+                              code.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Valeurs de
+                     retour
+                  </h2>
+                  <p class="mb-4">Une fonction peut retourner une valeur
+                     avec <code>return</code>. Si aucun
+                     <code>return</code> n'est spécifié, la fonction
+                     retourne <code>None</code>.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Fonction avec retour
+def carre(x):
+    """Retourne le carré d'un nombre"""
+    return x ** 2
+
+resultat = carre(4)  # resultat = 16</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Fonction sans return explicite
+def afficher_carre(x):
+    """Affiche le carré d'un nombre"""
+    print(x ** 2)
+
+resultat = afficher_carre(4)  # Affiche 16, resultat = None</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Retour multiple
+def operations(x, y):
+    """Retourne plusieurs résultats"""
+    return x + y, x - y, x * y, x / y
+
+somme, difference, produit, quotient = operations(10, 2)</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Paramètres et
+                     arguments
+                  </h2>
+                  <h3 class="text-lg font-semibold mb-2">Paramètres
+                     positionnels
+                  </h3>
+                  <p class="mb-4">Les arguments sont assignés aux
+                     paramètres dans l'ordre.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code>def soustraire(a, b):
+    return a - b
+
+resultat = soustraire(5, 3)  # a=5, b=3 → 2</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Arguments
+                     nommés
+                  </h3>
+                  <p class="mb-4">Permettent de spécifier les arguments
+                     par nom, indépendamment de l'ordre.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code>resultat = soustraire(b=3, a=5)  # Même résultat que précédemment</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Valeurs par
+                     défaut
+                  </h3>
+                  <p class="mb-4">Les paramètres peuvent avoir des valeurs
+                     par défaut.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code>def saluer(nom, message="Bonjour"):
+    print(f"{message}, {nom} !")
+
+saluer("Valentin")           # "Bonjour, Valentin !"
+saluer("Bob", "Salut")    # "Salut, Bob !"</code></pre>
+                  </div>
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                     <div class="flex">
+                        <div class="flex-shrink-0">
+                           <i class="fas fa-exclamation-triangle text-red-500"></i>
+                        </div>
+                        <div class="ml-3">
+                           <p class="text-sm text-red-700">
+                              Les paramètres sans valeur par défaut
+                              doivent toujours précéder ceux avec
+                              valeur par défaut dans la définition de
+                              la fonction.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Portée des
+                     variables
+                  </h2>
+                  <p class="mb-4">Les variables définies dans une fonction
+                     sont locales à cette fonction. Pour modifier une
+                     variable globale, utilisez le mot-clé
+                     <code>global</code>.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Variable globale
+compteur = 0
+
+def incrementer():
+    global compteur  # Référence à la variable globale
+    compteur += 1
+
+incrementer()
+print(compteur)  # 1</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Variable locale
+def test():
+    variable_locale = 10
+    print(variable_locale)
+
+test()
+print(variable_locale)  # Erreur: variable_locale n'est pas définie</code></pre>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Fonctions
+                     lambda
+                  </h2>
+                  <p class="mb-4">Les fonctions lambda sont des petites
+                     fonctions anonymes définies avec le mot-clé
+                     <code>lambda</code>.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe
+lambda arguments: expression
+
+# Exemple
+carre = lambda x: x ** 2
+print(carre(4))  # 16</code></pre>
+                  </div>
+                  <div class="code-block mb-4">
+                     <pre><code># Utilisation courante avec map()
+nombres = [1, 2, 3, 4]
+carres = list(map(lambda x: x**2, nombres))  # [1, 4, 9, 16]</code></pre>
+                  </div>
+                  <div class="exercise p-4 rounded-lg">
+                     <h3 class="font-semibold mb-2">Exercice
+                        pratique
+                     </h3>
+                     <p class="mb-2">Écrivez une fonction
+                        <code>calculatrice</code> qui :
+                     </p>
+                     <ul class="list-disc pl-5 mb-2">
+                        <li>Prend 3 paramètres : deux nombres et une
+                           opération (+, -, *, /)
+                        </li>
+                        <li>Retourne le résultat de l'opération</li>
+                        <li>Gère le cas de la division par zéro en
+                           retournant <code>None</code>
+                        </li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-2 solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+def calculatrice(a, b, operation):
+    """Effectue une opération de base sur deux nombres"""
+    if operation == '+':
+        return a + b
+    elif operation == '-':
+        return a - b
+    elif operation == '*':
+        return a * b
+    elif operation == '/':
+        if b == 0:
+            return None
+        return a / b
+    else:
+        return None
+
+# Exemples d'utilisation
+print(calculatrice(10, 5, '+'))  # 15
+print(calculatrice(10, 0, '/'))  # None</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Exercices Débutant -->
+            <div id="exercices1" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Exercices pour
+                  Débutants
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Exercice 1 :
+                     Calculatrice simple
+                  </h2>
+                  <p class="mb-4">Créez un programme qui demande deux
+                     nombres et une opération (+, -, *, /) à
+                     l'utilisateur, puis affiche le résultat.
+                  </p>
+                  <div class="exercise p-4 rounded-lg mb-4">
+                     <h3 class="font-semibold mb-2">Consignes :</h3>
+                     <ul class="list-disc pl-5 mb-4">
+                        <li>Utilisez <code>input()</code> pour demander
+                           les nombres et l'opération
+                        </li>
+                        <li>Convertissez les entrées en nombres
+                           (float)
+                        </li>
+                        <li>Utilisez des conditions pour déterminer
+                           l'opération à effectuer
+                        </li>
+                        <li>Gérez le cas de la division par zéro</li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+nombre1 = float(input("Entrez le premier nombre : "))
+nombre2 = float(input("Entrez le deuxième nombre : "))
+operation = input("Entrez l'opération (+, -, *, /) : ")
+
+if operation == '+':
+    resultat = nombre1 + nombre2
+elif operation == '-':
+    resultat = nombre1 - nombre2
+elif operation == '*':
+    resultat = nombre1 * nombre2
+elif operation == '/':
+    if nombre2 == 0:
+        print("Erreur : division par zéro")
+        resultat = None
+    else:
+        resultat = nombre1 / nombre2
+else:
+    print("Opération non reconnue")
+    resultat = None
+
+if resultat is not None:
+    print(f"Résultat : {resultat}")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Exercice 2 :
+                     Deviner le nombre
+                  </h2>
+                  <p class="mb-4">Créez un jeu où l'ordinateur choisit un
+                     nombre aléatoire entre 1 et 100, et l'utilisateur
+                     doit le deviner.
+                  </p>
+                  <div class="exercise p-4 rounded-lg mb-4">
+                     <h3 class="font-semibold mb-2">Consignes :</h3>
+                     <ul class="list-disc pl-5 mb-4">
+                        <li>Utilisez <code>import random</code> puis
+                           <code>random.randint(1, 100)</code> pour
+                           générer le nombre aléatoire
+                        </li>
+                        <li>Demandez à l'utilisateur de deviner le
+                           nombre
+                        </li>
+                        <li>Donnez des indices ("Trop grand",
+                           "Trop petit")
+                        </li>
+                        <li>Comptez le nombre de tentatives</li>
+                        <li>Félicitez l'utilisateur quand il trouve</li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+import random
+
+nombre_a_deviner = random.randint(1, 100)
+tentatives = 0
+
+print("J'ai choisi un nombre entre 1 and 100. Devinez lequel !")
+
+while True:
+    tentative = int(input("Votre proposition : "))
+    tentatives += 1
+    
+    if tentative < nombre_a_deviner:
+        print("Trop petit !")
+    elif tentative > nombre_a_deviner:
+        print("Trop grand !")
+    else:
+        print(f"Bravo ! Vous avez trouvé en {tentatives} tentatives.")
+        break</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Exercice 3 :
+                     FizzBuzz
+                  </h2>
+                  <p class="mb-4">Écrivez un programme qui affiche les
+                     nombres de 1 à 100 avec les règles suivantes :
+                  </p>
+                  <ul class="list-disc pl-5 mb-4">
+                     <li>Pour les multiples de 3, affichez "Fizz" au lieu
+                        du nombre
+                     </li>
+                     <li>Pour les multiples de 5, affichez "Buzz" au lieu
+                        du nombre
+                     </li>
+                     <li>Pour les multiples de 3 et 5, affichez
+                        "FizzBuzz"
+                     </li>
+                  </ul>
+                  <div class="exercise p-4 rounded-lg mb-4">
+                     <h3 class="font-semibold mb-2">Consignes :</h3>
+                     <ul class="list-disc pl-5 mb-4">
+                        <li>Utilisez une boucle <code>for</code> pour
+                           parcourir les nombres de 1 à 100
+                        </li>
+                        <li>Utilisez des conditions pour vérifier les
+                           multiples
+                        </li>
+                        <li>Pensez à vérifier d'abord le cas "FizzBuzz"
+                           (multiple de 3 et 5)
+                        </li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution
+for i in range(1, 101):
+    if i % 15 == 0:  # Multiple de 3 et 5
+        print("FizzBuzz")
+    elif i % 3 == 0:
+        print("Fizz")
+    elif i % 5 == 0:
+        print("Buzz")
+    else:
+        print(i)</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Exercice 4 :
+                     Table de multiplication
+                  </h2>
+                  <p class="mb-4">Créez un programme qui affiche la table
+                     de multiplication d'un nombre choisi par
+                     l'utilisateur.
+                  </p>
+                  <div class="exercise p-4 rounded-lg mb-4">
+                     <h3 class="font-semibold mb-2">Consignes :</h3>
+                     <ul class="list-disc pl-5 mb-4">
+                        <li>Demandez à l'utilisateur d'entrer un
+                           nombre
+                        </li>
+                        <li>Affichez la table de multiplication de ce
+                           nombre de 1 à 10
+                        </li>
+                        <li>Formatez l'affichage sous forme
+                           "5 x 2 = 10"
+                        </li>
+                        <li>Bonus : permettez à l'utilisateur de choisir
+                           la plage (par exemple de 3 à 15)
+                        </li>
+                     </ul>
+                     <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded solution-toggle">
+                     Afficher la solution
+                     </button>
+                     <div class="solution mt-4">
+                        <div class="code-block">
+                           <pre><code># Solution de base
+nombre = int(input("Entrez un nombre : "))
+
+print(f"Table de multiplication de {nombre} :")
+for i in range(1, 11):
+    print(f"{nombre} x {i} = {nombre * i}")
+
+# Solution bonus
+nombre = int(input("Entrez un nombre : "))
+debut = int(input("Début de la table : "))
+fin = int(input("Fin de la table : "))
+
+print(f"Table de multiplication de {nombre} ({debut} à {fin}) :")
+for i in range(debut, fin + 1):
+    print(f"{nombre} x {i} = {nombre * i}")</code></pre>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Listes et Tuples -->
+            <!-- Listes et Tuples amélioré -->
+            <div id="listes" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Listes et Tuples en Python</h1>
+               <!-- Introduction et comparaison -->
+               <div class="bg-white rounded-lg shadow p-6 mb-8">
+                  <p class="mb-4">Les <strong>listes</strong> et les <strong>tuples</strong> sont des structures de
+                     données fondamentales en Python pour stocker des collections d'éléments. <br>
+                     <em>La principale différence</em> est que les listes sont <u>modifiables</u> (mutables) tandis
+                     que les tuples sont <u>immuables</u>. Choisissez un tuple lorsque vos données ne doivent pas
+                     changer.
+                  </p>
+                  <div class="grid md:grid-cols-2 gap-6">
+                     <div>
+                        <h2 class="text-xl font-semibold mb-2">Listes</h2>
+                        <ul class="list-disc pl-5 text-gray-700">
+                           <li>Notation : <code>[élément1, élément2, ...]</code></li>
+                           <li>Mutable : on peut ajouter, supprimer, modifier</li>
+                           <li>Supporte de nombreuses méthodes intégrées</li>
+                        </ul>
+                     </div>
+                     <div>
+                        <h2 class="text-xl font-semibold mb-2">Tuples</h2>
+                        <ul class="list-disc pl-5 text-gray-700">
+                           <li>Notation : <code>(élément1, élément2, ...)</code></li>
+                           <li>Immuable : protégé contre les modifications accidentelles</li>
+                           <li>Plus rapide en lecture et parfois utilisé comme clé dans un <code>dict</code></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <!-- Section Listes -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-2xl font-semibold mb-4">1. Travailler avec les Listes</h2>
+                  <!-- Création et accès -->
+                  <h3 class="text-lg font-semibold mb-2">Création et accès</h3>
+                  <div class="code-block mb-4">
+                     <pre><code># Création d'une liste
+  fruits = ["pomme", "banane", "cerise"]
+  
+  # Accès par index (0-based)
+  print(fruits[0])     # 'pomme'
+  print(fruits[-1])    # 'cerise' (dernier élément)</code></pre>
+                  </div>
+                  <!-- Slicing -->
+                  <h3 class="text-lg font-semibold mb-2">Slicing</h3>
+                  <p class="mb-2">Extraire un sous-ensemble :</p>
+                  <div class="code-block mb-4">
+                     <pre><code># Syntaxe : liste[début:fin:pas]
+  print(fruits[0:2])   # ['pomme', 'banane']
+  print(fruits[::2])   # ['pomme', 'cerise'] (tous les 2)</code></pre>
+                  </div>
+                  <!-- Méthodes utiles -->
+                  <h3 class="text-lg font-semibold mb-2">Méthodes utiles</h3>
+                  <ul class="list-disc pl-5 mb-4 text-gray-700">
+                     <li><code>append(x)</code> : ajoute <code>x</code> à la fin</li>
+                     <li><code>insert(i, x)</code> : insère <code>x</code> à l'index <code>i</code></li>
+                     <li><code>remove(x)</code> : supprime la première occurrence de <code>x</code></li>
+                     <li><code>pop([i])</code> : retire et renvoie l'élément à l'index <code>i</code> (dernier par
+                        défaut)
+                     </li>
+                     <li><code>sort()</code> et <code>sorted()</code> : tri</li>
+                     <li><code>reverse()</code> : inverse l'ordre</li>
+                  </ul>
+                  <div class="code-block">
+                     <pre><code># Exemple complet
+  nombres = [3, 1, 4, 1, 5]
+  nombres.append(9)
+  nombres.insert(2, 2)
+  nombres.remove(1)
+  nombres.sort()
+  print(nombres)   # [1, 2, 3, 4, 5, 9]</code></pre>
+                  </div>
+                  <!-- List comprehension -->
+                  <h3 class="text-lg font-semibold mb-2">List Comprehension</h3>
+                  <p class="mb-2">Construire une nouvelle liste de façon concise :</p>
+                  <div class="code-block">
+                     <pre><code># Carrés des nombres de 1 à 5
+  carres = [x**2 for x in range(1, 6)]
+  print(carres)   # [1, 4, 9, 16, 25]
+  
+  # Filtrer
+  pairs = [x for x in range(1, 11) if x % 2 == 0]
+  print(pairs)    # [2, 4, 6, 8, 10]</code></pre>
+                  </div>
+               </div>
+               <!-- Section Tuples -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-2xl font-semibold mb-4">2. Travailler avec les Tuples</h2>
+                  <h3 class="text-lg font-semibold mb-2">Création et Accès</h3>
+                  <div class="code-block mb-4">
+                     <pre><code># Création d'un tuple
+  coordonnees = (10.0, 20.0)
+  
+  # Accès
+  x, y = coordonnees    # Unpacking
+  print(x, y)           # 10.0 20.0</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Usages courants</h3>
+                  <ul class="list-disc pl-5 text-gray-700">
+                     <li>Retour multiple depuis une fonction</li>
+                     <li>Clés immuables pour un <code>dict</code></li>
+                     <li>Permutation de variables sans temporaire : <code>a, b = b, a</code></li>
+                  </ul>
+                  <div class="code-block">
+                     <pre><code># Exemple : fonction retournant plusieurs valeurs
+  def operations(a, b):
+      return a+b, a-b, a*b, (a/b if b else None)
+  
+  somme, diff, prod, quot = operations(8, 2)
+  print(somme, diff, prod, quot)  # 10 6 16 4.0</code></pre>
+                  </div>
+               </div>
+               <!-- Exercice pratique -->
+               <div class="exercise p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
+                  <h3 class="font-semibold mb-2">Exercice Pratique</h3>
+                  <p class="mb-2">Écrivez un programme qui :</p>
+                  <ul class="list-disc pl-5 mb-2 text-gray-700">
+                     <li>Lit une liste de nombres (input séparés par des espaces)</li>
+                     <li>Affiche la liste des carrés pairs uniquement (utilisez une list comprehension)</li>
+                  </ul>
+                  <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded solution-toggle">Afficher
+                  la solution</button>
+                  <div class="solution mt-4">
+                     <div class="code-block">
+                        <pre><code># Solution
+  data = input("Entrez des nombres séparés par des espaces: ")
+  nombres = list(map(int, data.split()))
+  carres_pairs = [x**2 for x in nombres if x % 2 == 0]
+  print(f"Carrés pairs: {carres_pairs}")</code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Dictionnaires -->
+            <div id="dictionnaires" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Dictionnaires en Python</h1>
+               <!-- 1. Création & accès -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">1. Création & accès</h2>
+                  <p class="mb-4">Un dictionnaire est une collection non ordonnée de paires <code>clé → valeur</code>.
+                  </p>
+                  <div class="code-block mb-4">
+                     <pre><code># Création
+  mon_dict = {
+      "nom": "Valentin",
+      "age": 23,
+      "skills": ["Python", "C"]
+  }
+  
+  # Accès sécurisé
+  print(mon_dict["nom"])          # Valentin
+  print(mon_dict.get("age"))      # 23
+  print(mon_dict.get("ville", "Inconnue"))  # Inconnue
+  </code></pre>
+                  </div>
+                  <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                     <div class="flex">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        <p class="text-sm text-blue-700">
+                           Préférez <code>get()</code> pour éviter l'exception <code>KeyError</code> si la clé
+                           n'existe pas.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <!-- 2. Modification -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">2. Ajout, mise à jour & suppression</h2>
+                  <div class="code-block mb-4">
+                     <pre><code># Ajout ou mise à jour
+  mon_dict["ville"] = "Paris"   # ajout
+  mon_dict["age"] = 26          # mise à jour
+  
+  # Suppression
+  del mon_dict["skills"]        # sans retour
+  ancien_age = mon_dict.pop("age")  # récupère et supprime
+  </code></pre>
+                  </div>
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                     <div class="flex">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        <p class="text-sm text-yellow-700">
+                           <code>pop()</code> renvoie la valeur associée à la clé supprimée.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <!-- 3. Parcours & méthodes utiles -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">3. Parcours & méthodes utiles</h2>
+                  <div class="code-block mb-4">
+                     <pre><code># Parcours complet
+  for cle, val in mon_dict.items():
+      print(f"{cle} → {val}")
+  
+  # Liste des clés et des valeurs
+  cles = list(mon_dict.keys())
+  vals = list(mon_dict.values())
+  
+  # Fusion (Python 3.9+)
+  d2 = {"pays": "France"}
+  fusion = mon_dict | d2
+  </code></pre>
+                  </div>
+                  <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                     <div class="flex">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <p class="text-sm text-green-700">
+                           La fusion avec <code>|</code> ne modifie pas les originaux ; elle crée un nouveau dict.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Exercice pratique -->
+               <div class="exercise p-6 rounded-lg mb-6">
+                  <h3 class="font-semibold mb-2">Exercice pratique</h3>
+                  <p class="mb-2">
+                     Écrivez un programme qui compte la fréquence de chaque mot dans une liste de chaînes, et affiche
+                     les 3 mots les plus fréquents.
+                  </p>
+               </div>
+            </div>
+            <!-- Manipulation de fichiers -->
+            <div id="fichiers" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Manipulation de fichiers</h1>
+               <!-- 1. Lecture & écriture basique -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">1. Lecture & écriture</h2>
+                  <div class="code-block mb-4">
+                     <pre><code># Écriture (mode "w" écrase)
+  with open("notes.txt", "w", encoding="utf-8") as f:
+      f.write("Ligne 1\nLigne 2\n")
+  
+  # Lecture complète
+  with open("notes.txt", "r", encoding="utf-8") as f:
+      contenu = f.read()
+      print(contenu)
+  
+  # Lecture ligne par ligne
+  with open("notes.txt", "r", encoding="utf-8") as f:
+      for ligne in f:
+          print(ligne.strip())
+  </code></pre>
+                  </div>
+                  <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                     <div class="flex">
+                        <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                        <p class="text-sm text-blue-700">
+                           Toujours fermer le fichier (avec <code>with</code>) pour s'assurer que les tampons sont
+                           vidés.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <!-- 2. Modes d'ouverture -->
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">2. Autres modes d'ouverture</h2>
+                  <ul class="list-disc pl-5">
+                     <li><code>"a"</code> → append : ajoute sans écraser</li>
+                     <li><code>"x"</code> → crée le fichier, échoue s'il existe</li>
+                     <li><code>"b"</code> → mode binaire (ex. <code>"rb"</code>, <code>"wb"</code>)</li>
+                     <li><code>"+" </code>→ lecture et écriture simultanées (ex. <code>"r+"</code>)</li>
+                  </ul>
+               </div>
+               <!-- 3. Exercice pratique -->
+               <div class="exercise p-6 rounded-lg">
+                  <h3 class="font-semibold mb-2">Exercice pratique</h3>
+                  <p>
+                     Écrivez un script qui lit un fichier CSV (séparateur <code>","</code>) et calcule la moyenne de
+                     la deuxième colonne.
+                  </p>
+               </div>
+            </div>
+            <!-- Gestion des erreurs -->
+            <div id="exceptions" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Gestion des
+                  erreurs
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">try / except
+                     / else / finally
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>try:
+      x = int(input("Entrez un entier : "))
+      y = 10 / x
+  except ValueError:
+      print("Ce n'est pas un entier valide.")
+  except ZeroDivisionError:
+      print("Division par zéro interdite.")
+  else:
+      print("Résultat :", y)
+  finally:
+      print("Fin du traitement.")</code></pre>
+                  </div>
+                  <p>On peut aussi lever soi-même une exception :</p>
+                  <div class="code-block">
+                     <pre><code>def factorial(n):
+      if n < 0:
+          raise ValueError("n doit être ≥ 0")
+      return 1 if n == 0 else n * factorial(n-1)</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Modules et PIP -->
+            <div id="modules" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Modules et PIP</h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Importer un
+                     module
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>import math
+  from datetime import datetime
+  
+  print(math.sqrt(16))      # 4.0
+  print(datetime.now())     # date et heure courantes</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Créer son
+                     propre module
+                  </h3>
+                  <p>Créez un fichier <code>mon_module.py</code> :</p>
+                  <div class="code-block">
+                     <pre><code># mon_module.py
+  def saluer(nom):
+      return f"Bonjour, {nom} !"</code></pre>
+                  </div>
+                  <p>Puis dans votre script :</p>
+                  <div class="code-block mb-4">
+                     <pre><code>from mon_module import saluer
+  print(saluer("Valentin"))</code></pre>
+                  </div>
+                  <h2 class="text-xl font-semibold mb-4">PIP
+                     (gestionnaire de paquets)
+                  </h2>
+                  <div class="code-block">
+                     <pre><code># Installer un paquet
+  pip install requests
+  
+  # Lister les paquets installés
+  pip list
+  
+  # Mettre à jour un paquet
+  pip install --upgrade requests</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Exercices intermédiaires -->
+            <div id="exercices2" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Exercices pour
+                  Intermédiaire
+               </h1>
+               <div class="exercise p-4 rounded-lg mb-4">
+                  <h3 class="font-semibold mb-2">Exercice 1 : Analyse
+                     de texte
+                  </h3>
+                  <p>Écrivez un programme qui lit un fichier texte et
+                     affiche :
+                  </p>
+                  <ul class="list-disc pl-5 mb-2">
+                     <li>Le nombre de lignes</li>
+                     <li>Le nombre total de mots</li>
+                     <li>Le mot le plus fréquent</li>
+                  </ul>
+               </div>
+               <div class="exercise p-4 rounded-lg">
+                  <h3 class="font-semibold mb-2">Exercice 2 : API
+                     HTTP
+                  </h3>
+                  <p>Utilisez <code>requests</code> pour interroger
+                     l'API publique JSONPlaceholder
+                     (<code>https://jsonplaceholder.typicode.com/posts</code>)
+                     et afficher les titres des 5 premiers posts.
+                  </p>
+               </div>
+            </div>
+            <!-- Programmation Orientée Objet -->
+            <div id="poo" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Programmation
+                  Orientée Objet
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6 mb-6">
+                  <h2 class="text-xl font-semibold mb-4">Définition
+                     d'une classe
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>class Personne:
+      def __init__(self, nom, age):
+          self.nom = nom
+          self.age = age
+  
+      def se_presenter(self):
+          return f"Je m'appelle {self.nom} et j'ai {self.age} ans."
+  
+  # Utilisation
+  p = Personne("Valentin", 23)
+  print(p.se_presenter())</code></pre>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Héritage</h3>
+                  <div class="code-block">
+                     <pre><code>class Étudiant(Personne):
+      def __init__(self, nom, age, ecole):
+          super().__init__(nom, age)
+          self.ecole = ecole
+  
+      def se_presenter(self):
+          base = super().se_presenter()
+          return base + f" Je suis à {self.ecole}."</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Décorateurs -->
+            <div id="decorateurs" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Décorateurs</h1>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Fonction
+                     décoratrice
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>def chronometre(fonction):
+      import time
+      def wrapper(*args, **kwargs):
+          début = time.time()
+          résultat = fonction(*args, **kwargs)
+          print("Temps:", time.time() - début)
+          return résultat
+      return wrapper
+  
+  @chronometre
+  def calcul_lourd(n):
+      somme = 0
+      for i in range(n):
+          somme += i**2
+      return somme
+  
+  calcul_lourd(1000000)</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Typing et Annotations -->
+            <div id="typing" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Typing et
+                  Annotations
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Annotations
+                     de type
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>from typing import List, Optional
+  
+  def moyenne(valeurs: List[float]) -> Optional[float]:
+      if not valeurs:
+          return None
+      return sum(valeurs) / len(valeurs)
+  
+  print(moyenne([1.0, 2.5, 3.5]))</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Requêtes HTTP (requests) -->
+            <div id="requests" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Requêtes HTTP
+                  (requests)
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">GET et
+                     POST
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>import requests
+  
+  # GET
+  r = requests.get("https://api.github.com")
+  print(r.status_code, r.headers["Content-Type"])
+  
+  # POST (exemple JSONPlaceholder)
+  data = {"title": "foo", "body": "bar", "userId": 1}
+  r2 = requests.post("https://jsonplaceholder.typicode.com/posts", json=data)
+  print(r2.json())</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Programmation réseau (sockets) -->
+            <div id="sockets" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Programmation réseau
+                  (sockets)
+               </h1>
+               <div class="bg-white rounded-lg shadow p-6">
+                  <h2 class="text-xl font-semibold mb-4">Serveur TCP
+                     simple
+                  </h2>
+                  <div class="code-block mb-4">
+                     <pre><code>import socket
+  
+  with socket.socket() as s:
+      s.bind(("localhost", 5000))
+      s.listen()
+      conn, addr = s.accept()
+      with conn:
+          print("Connecté par", addr)
+          while True:
+              data = conn.recv(1024)
+              if not data:
+                  break
+              conn.sendall(data.upper())</code></pre>
+                  </div>
+               </div>
+            </div>
+            <!-- Exercices Avancés -->
+            <div id="exercices3" class="lesson-content">
+               <h1 class="text-3xl font-bold mb-6">Exercices pour
+                  Avancés
+               </h1>
+               <div class="exercise p-4 rounded-lg mb-4">
+                  <h3 class="font-semibold mb-2">Exercice 1 :
+                     Threading
+                  </h3>
+                  <p>Créez un serveur qui gère plusieurs clients
+                     simultanément en utilisant
+                     <code>threading.Thread</code>.
+                  </p>
+               </div>
+               <div class="exercise p-4 rounded-lg">
+                  <h3 class="font-semibold mb-2">Exercice 2 :
+                     Générateurs
+                  </h3>
+                  <p>Écrivez un générateur qui produit une suite de
+                     Fibonacci indéfiniment, puis affichez les 20
+                     premiers termes.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <script>
+         Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
+             text: 'Copy',
+             onClick: (env) => {
+                 navigator.clipboard.writeText(env.code).then(() => {/*copié*/ });
+             }
+         });
+         document.addEventListener('DOMContentLoaded', () => {
+             document
+                 .querySelectorAll('.code-block pre code:not([class*="language-"])')
+                 .forEach(el => el.classList.add('language-python'));
+             Prism.highlightAll();
+         });
+         document.addEventListener('DOMContentLoaded', () => {
+             const links = document.querySelectorAll('.lesson-link');
+             const contents = document.querySelectorAll('.lesson-content');
+         
+             links.forEach(link => {
+                 link.addEventListener('click', event => {
+                     event.preventDefault();
+                     const target = link.dataset.lesson;
+         
+                     contents.forEach(c => c.classList.remove('active'));
+                     links.forEach(l => l.classList.remove('active-lesson'));
+         
+                     link.classList.add('active-lesson');
+                     document.getElementById(target).classList.add('active');
+                 });
+             });
+         
+             const buttons = document.querySelectorAll('.solution-toggle');
+             buttons.forEach(btn => {
+                 btn.addEventListener('click', () => {
+                     const sol = btn.nextElementSibling;
+                     sol.classList.toggle('show');
+                     btn.textContent = sol.classList.contains('show') ? 'Cacher la solution' : 'Afficher la solution';
+                 });
+             });
+         });
+      </script>
+   </body>
+</html>
