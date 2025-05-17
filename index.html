@@ -28,6 +28,24 @@
          position: sticky;
          top: 0;
          }
+         /* Mobile : sidebar hors écran à gauche */
+         @media (max-width: 768px) {
+         #sidebar {
+         /* fixe la sidebar, même largeur que w-64 (16rem) */
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 16rem;
+         height: 100vh;
+         transform: translateX(-100%);       /* complètement masquée */
+         transition: transform 0.3s ease;    /* animation fluide */
+         z-index: 40;
+         }
+         /* quand on veut l’afficher, on remet à zéro le translate */
+         #sidebar.show {
+         transform: translateX(0);
+         }
+         }
          .content {
          max-height: 100vh;
          overflow-y: auto;
@@ -124,9 +142,12 @@
       </style>
    </head>
    <body class="bg-gray-50">
+      <button id="menu-btn" class="md:hidden p-2 text-gray-800 bg-gray-100 fixed top-2 left-4 rounded z-50">
+      <i class="fas fa-bars text-lg"></i>
+      </button>
       <div class="flex">
          <!-- Sidebar -->
-         <div class="sidebar w-64 bg-gray-800 text-white p-4">
+         <div id="sidebar" class="sidebar md:block bg-gray-800 text-white p-4">
             <div class="flex items-center mb-8">
                <i class="fab fa-python text-3xl mr-2 text-blue-400"></i>
                <h1 class="text-xl font-bold">Cours Python</h1>
@@ -214,10 +235,10 @@
             </div>
          </div>
          <!-- Main Content -->
-         <div class="content flex-1 p-8">
+         <div class="content flex-1 p-8 pt-16">
             <!-- Introduction -->
             <div id="intro" class="lesson-content active">
-               <h1 class="text-3xl font-bold mb-6">Introduction à
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Introduction à
                   Python
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -340,7 +361,7 @@ source mon_env/bin/activate</code></pre>
             </div>
             <!-- Variables et Types -->
             <div id="variables" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Variables et Types de
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Variables et Types de
                   données
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -509,7 +530,7 @@ print(f"La somme est {somme}")</code></pre>
             </div>
             <!-- Opérateurs -->
             <div id="operators" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Opérateurs en
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Opérateurs en
                   Python
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -800,7 +821,7 @@ else:
             </div>
             <!-- Conditions -->
             <div id="conditions" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Structures
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Structures
                   conditionnelles
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -1000,7 +1021,7 @@ else:
             </div>
             <!-- Boucles -->
             <div id="boucles" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Boucles en Python</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Boucles en Python</h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 class="text-xl font-semibold mb-4">Boucle while</h2>
                   <p class="mb-4">La boucle <code>while</code> répète un
@@ -1205,7 +1226,7 @@ for n in range(2, nombre):
             </div>
             <!-- Fonctions -->
             <div id="fonctions" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Fonctions en Python</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Fonctions en Python</h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 class="text-xl font-semibold mb-4">Définition de
                      fonctions
@@ -1433,7 +1454,7 @@ print(calculatrice(10, 0, '/'))  # None</code></pre>
             </div>
             <!-- Exercices Débutant -->
             <div id="exercices1" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Exercices pour
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Exercices pour
                   Débutants
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -1644,7 +1665,7 @@ for i in range(debut, fin + 1):
             <!-- Listes et Tuples -->
             <!-- Listes et Tuples amélioré -->
             <div id="listes" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Listes et Tuples en Python</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Listes et Tuples en Python</h1>
                <!-- Introduction et comparaison -->
                <div class="bg-white rounded-lg shadow p-6 mb-8">
                   <p class="mb-4">Les <strong>listes</strong> et les <strong>tuples</strong> sont des structures de
@@ -1777,7 +1798,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Dictionnaires -->
             <div id="dictionnaires" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Dictionnaires en Python</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Dictionnaires en Python</h1>
                <!-- 1. Création & accès -->
                <div class="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 class="text-xl font-semibold mb-4">1. Création & accès</h2>
@@ -1866,7 +1887,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Manipulation de fichiers -->
             <div id="fichiers" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Manipulation de fichiers</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Manipulation de fichiers</h1>
                <!-- 1. Lecture & écriture basique -->
                <div class="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 class="text-xl font-semibold mb-4">1. Lecture & écriture</h2>
@@ -1917,7 +1938,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Gestion des erreurs -->
             <div id="exceptions" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Gestion des
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Gestion des
                   erreurs
                </h1>
                <div class="bg-white rounded-lg shadow p-6">
@@ -1948,7 +1969,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Modules et PIP -->
             <div id="modules" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Modules et PIP</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Modules et PIP</h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 class="text-xl font-semibold mb-4">Importer un
                      module
@@ -1991,7 +2012,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Exercices intermédiaires -->
             <div id="exercices2" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Exercices pour
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Exercices pour
                   Intermédiaire
                </h1>
                <div class="exercise p-4 rounded-lg mb-4">
@@ -2020,7 +2041,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Programmation Orientée Objet -->
             <div id="poo" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Programmation
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Programmation
                   Orientée Objet
                </h1>
                <div class="bg-white rounded-lg shadow p-6 mb-6">
@@ -2055,7 +2076,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Décorateurs -->
             <div id="decorateurs" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Décorateurs</h1>
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Décorateurs</h1>
                <div class="bg-white rounded-lg shadow p-6">
                   <h2 class="text-xl font-semibold mb-4">Fonction
                      décoratrice
@@ -2083,7 +2104,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Typing et Annotations -->
             <div id="typing" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Typing et
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Typing et
                   Annotations
                </h1>
                <div class="bg-white rounded-lg shadow p-6">
@@ -2104,7 +2125,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Requêtes HTTP (requests) -->
             <div id="requests" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Requêtes HTTP
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Requêtes HTTP
                   (requests)
                </h1>
                <div class="bg-white rounded-lg shadow p-6">
@@ -2127,7 +2148,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Programmation réseau (sockets) -->
             <div id="sockets" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Programmation réseau
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Programmation réseau
                   (sockets)
                </h1>
                <div class="bg-white rounded-lg shadow p-6">
@@ -2153,7 +2174,7 @@ for i in range(debut, fin + 1):
             </div>
             <!-- Exercices Avancés -->
             <div id="exercices3" class="lesson-content">
-               <h1 class="text-3xl font-bold mb-6">Exercices pour
+               <h1 class="text-3xl font-bold mb-6"><i class="fab fa-python text-yellow-400 text-4xl mr-3"></i>Exercices pour
                   Avancés
                </h1>
                <div class="exercise p-4 rounded-lg mb-4">
@@ -2179,6 +2200,13 @@ for i in range(debut, fin + 1):
       </div>
       </div>
       <script>
+         const menuBtn = document.getElementById('menu-btn');
+         const sidebar = document.getElementById('sidebar');
+         
+         menuBtn.addEventListener('click', () => {
+         sidebar.classList.toggle('show');
+         });
+         
          Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
              text: 'Copy',
              onClick: (env) => {
