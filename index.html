@@ -139,6 +139,9 @@
          .token.italic {
          font-style: italic;
          }
+         .level-list.hidden {
+         display: none;
+         }
       </style>
    </head>
    <body class="bg-gray-50">
@@ -147,91 +150,69 @@
       </button>
       <div class="flex">
          <!-- Sidebar -->
+         <!-- Sidebar -->
          <div id="sidebar" class="sidebar md:block bg-gray-800 text-white p-4">
             <div class="flex items-center mb-8">
                <i class="fab fa-python text-3xl mr-2 text-blue-400"></i>
                <h1 class="text-xl font-bold">Cours Python</h1>
             </div>
+            <!-- Niveau Débutant -->
             <div class="mb-6">
-               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
-                  Débutant
+               <h2 class="text-lg font-semibold mb-2 text-blue-300 flex justify-between items-center">
+                  Niveau Débutant
+                  <button class="level-toggle focus:outline-none">
+                  <i class="fas fa-chevron-down"></i>
+                  </button>
                </h2>
-               <ul class="space-y-1">
-                  <li><a href="#intro" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="intro">Introduction à
-                     Python</a>
-                  </li>
-                  <li><a href="#variables" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="variables">Variables et
-                     Types</a>
-                  </li>
-                  <li><a href="#operators" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="operators">Opérateurs</a></li>
-                  <li><a href="#conditions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="conditions">Conditions</a></li>
-                  <li><a href="#boucles" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="boucles">Boucles</a></li>
-                  <li><a href="#fonctions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="fonctions">Fonctions</a></li>
-                  <li><a href="#exercices1" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="exercices1">Exercices
-                     Débutant</a>
-                  </li>
-               </ul>
+               <div class="level-list hidden">
+                  <ul class="space-y-1">
+                     <li><a href="#intro" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="intro">Introduction à Python</a></li>
+                     <li><a href="#variables" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="variables">Variables et Types</a></li>
+                     <li><a href="#operators" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="operators">Opérateurs</a></li>
+                     <li><a href="#conditions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="conditions">Conditions</a></li>
+                     <li><a href="#boucles" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="boucles">Boucles</a></li>
+                     <li><a href="#fonctions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="fonctions">Fonctions</a></li>
+                     <li><a href="#exercices1" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="exercices1">Exercices Débutant</a></li>
+                  </ul>
+               </div>
             </div>
+            <!-- Niveau Intermédiaire -->
             <div class="mb-6">
-               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
-                  Intermédiaire
+               <h2 class="text-lg font-semibold mb-2 text-blue-300 flex justify-between items-center">
+                  Niveau Intermédiaire
+                  <button class="level-toggle focus:outline-none">
+                  <i class="fas fa-chevron-down"></i>
+                  </button>
                </h2>
-               <ul class="space-y-1">
-                  <li><a href="#listes" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="listes">Listes et Tuples</a></li>
-                  <li><a href="#dictionnaires" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="dictionnaires">Dictionnaires</a></li>
-                  <li><a href="#fichiers" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="fichiers">Manipulation de
-                     fichiers</a>
-                  </li>
-                  <li><a href="#exceptions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="exceptions">Gestion des
-                     erreurs</a>
-                  </li>
-                  <li><a href="#modules" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="modules">Modules et PIP</a></li>
-                  <li><a href="#exercices2" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="exercices2">Exercices
-                     Intermédiaire</a>
-                  </li>
-               </ul>
+               <div class="level-list hidden">
+                  <ul class="space-y-1">
+                     <li><a href="#listes" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="listes">Listes et Tuples</a></li>
+                     <li><a href="#dictionnaires" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="dictionnaires">Dictionnaires</a></li>
+                     <li><a href="#fichiers" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="fichiers">Manipulation de fichiers</a></li>
+                     <li><a href="#exceptions" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="exceptions">Gestion des erreurs</a></li>
+                     <li><a href="#modules" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="modules">Modules et PIP</a></li>
+                     <li><a href="#exercices2" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="exercices2">Exercices Intermédiaire</a></li>
+                  </ul>
+               </div>
             </div>
+            <!-- Niveau Avancé -->
             <div>
-               <h2 class="text-lg font-semibold mb-2 text-blue-300">Niveau
-                  Avancé
+               <h2 class="text-lg font-semibold mb-2 text-blue-300 flex justify-between items-center">
+                  Niveau Avancé
+                  <button class="level-toggle focus:outline-none">
+                  <i class="fas fa-chevron-down"></i>
+                  </button>
                </h2>
-               <ul class="space-y-1">
-                  <li><a href="#poo" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="poo">Programmation Orientée
-                     Objet</a>
-                  </li>
-                  <li><a href="#decorateurs" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="decorateurs">Décorateurs</a></li>
-                  <li><a href="#typing" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="typing">Typing et
-                     Annotations</a>
-                  </li>
-                  <li><a href="#requests" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="requests">Requêtes HTTP
-                     (requests)</a>
-                  </li>
-                  <li><a href="#sockets" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="sockets">Programmation réseau
-                     (sockets)</a>
-                  </li>
-                  <li><a href="#exercices3" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700"
-                     data-lesson="exercices3">Exercices
-                     Avancés</a>
-                  </li>
-               </ul>
+               <div class="level-list hidden">
+                  <ul class="space-y-1">
+                     <li><a href="#poo" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="poo">Programmation Orientée Objet</a></li>
+                     <li><a href="#decorateurs" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="decorateurs">Décorateurs</a></li>
+                     <li><a href="#typing" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="typing">Typing et Annotations</a></li>
+                     <li><a href="#requests" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="requests">Requêtes HTTP (requests)</a></li>
+                     <li><a href="#sockets" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="sockets">Programmation réseau (sockets)</a></li>
+                     <li><a href="#exercices3" class="lesson-link block px-3 py-2 rounded hover:bg-gray-700" data-lesson="exercices3">Exercices Avancés</a></li>
+                  </ul>
+               </div>
             </div>
          </div>
          <!-- Main Content -->
@@ -2200,70 +2181,84 @@ for i in range(debut, fin + 1):
       </div>
       </div>
       <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const sidebar = document.getElementById('sidebar');
-      
-        // Toggle sidebar mobile
-        menuBtn.addEventListener('click', () => {
-          sidebar.classList.toggle('show');
-        });
-      
-        // Prism.js copy-to-clipboard
-        Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
-          text: 'Copy',
-          onClick: env => {
-            navigator.clipboard.writeText(env.code);
-          }
-        });
-      
-        document.addEventListener('DOMContentLoaded', () => {
-          // Ajout de la classe language-python et mise en forme
-          document
-            .querySelectorAll('.code-block pre code:not([class*="language-"])')
-            .forEach(el => el.classList.add('language-python'));
-          Prism.highlightAll();
-      
-          // NAVIGATION PAR HASH
-          const links = document.querySelectorAll('.lesson-link');
-          const contents = document.querySelectorAll('.lesson-content');
-      
-          // Fonction d’activation d’une leçon
-          function activate(lesson) {
-            contents.forEach(c => c.classList.remove('active'));
-            links.forEach(l => l.classList.remove('active-lesson'));
-            const link = document.querySelector(`.lesson-link[data-lesson="${lesson}"]`);
-            const section = document.getElementById(lesson);
-            if (link && section) {
-              link.classList.add('active-lesson');
-              section.classList.add('active');
-            }
-          }
-      
-          // Clic sur un lien → mise à jour du hash + activation
-          links.forEach(link => {
-            link.addEventListener('click', () => {
-              const target = link.dataset.lesson;
-              window.location.hash = target;
-              activate(target);
-            });
-          });
-      
-          // Au chargement : lecture du hash ou fallback sur "intro"
-          const initial = window.location.hash.replace('#', '') || 'intro';
-          activate(initial);
-      
-          // TOGGLE SOLUTIONS
-          const buttons = document.querySelectorAll('.solution-toggle');
-          buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-              const sol = btn.nextElementSibling;
-              sol.classList.toggle('show');
-              btn.textContent = sol.classList.contains('show')
-                ? 'Cacher la solution'
-                : 'Afficher la solution';
-            });
-          });
-        });
+         const menuBtn = document.getElementById('menu-btn');
+         const sidebar = document.getElementById('sidebar');
+         
+         // Toggle sidebar mobile
+         menuBtn.addEventListener('click', () => {
+           sidebar.classList.toggle('show');
+         });
+         
+         // Prism.js copy-to-clipboard
+         Prism.plugins.toolbar && Prism.plugins.toolbar.registerButton('copy-to-clipboard', {
+           text: 'Copy',
+           onClick: env => {
+             navigator.clipboard.writeText(env.code);
+           }
+         });
+         
+         document.addEventListener('DOMContentLoaded', () => {
+           // Ajout de la classe language-python et mise en forme
+           document
+             .querySelectorAll('.code-block pre code:not([class*="language-"])')
+             .forEach(el => el.classList.add('language-python'));
+           Prism.highlightAll();
+         
+           // NAVIGATION PAR HASH
+           const links = document.querySelectorAll('.lesson-link');
+           const contents = document.querySelectorAll('.lesson-content');
+         
+           // Fonction d’activation d’une leçon
+           function activate(lesson) {
+             contents.forEach(c => c.classList.remove('active'));
+             links.forEach(l => l.classList.remove('active-lesson'));
+             const link = document.querySelector(`.lesson-link[data-lesson="${lesson}"]`);
+             const section = document.getElementById(lesson);
+             if (link && section) {
+               link.classList.add('active-lesson');
+               section.classList.add('active');
+             }
+           }
+         
+           // Clic sur un lien → mise à jour du hash + activation
+           links.forEach(link => {
+             link.addEventListener('click', () => {
+               const target = link.dataset.lesson;
+               window.location.hash = target;
+               activate(target);
+             });
+           });
+         
+           // Au chargement : lecture du hash ou fallback sur "intro"
+           const initial = window.location.hash.replace('#', '') || 'intro';
+           activate(initial);
+         
+           // TOGGLE SOLUTIONS
+           const buttons = document.querySelectorAll('.solution-toggle');
+           buttons.forEach(btn => {
+             btn.addEventListener('click', () => {
+               const sol = btn.nextElementSibling;
+               sol.classList.toggle('show');
+               btn.textContent = sol.classList.contains('show')
+                 ? 'Cacher la solution'
+                 : 'Afficher la solution';
+             });
+           });
+         });
+         
+         // TOGGLE POUR CHAQUE NIVEAU
+         document.querySelectorAll('.level-toggle').forEach(btn => {
+         btn.addEventListener('click', () => {
+         const container = btn.closest('div.mb-6') || btn.closest('#sidebar > div:last-child');
+         const list = container.querySelector('.level-list');
+         list.classList.toggle('hidden');
+         // Inversion de l'icône
+         const icon = btn.querySelector('i');
+         icon.classList.toggle('fa-chevron-down');
+         icon.classList.toggle('fa-chevron-up');
+         });
+         });
+         
       </script>      
    </body>
 </html>
